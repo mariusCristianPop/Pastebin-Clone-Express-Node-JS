@@ -8,4 +8,12 @@ router.get('/', function (req, res, next) {
   });
 });
 
+/* POST to home page. */
+router.post('/', function (req, res, next) {
+  console.log(`User has inserted: ${req.body.userInput}`)
+  res.render("index", {
+      title: 'ExpressA'
+  });
+});
+
 module.exports = router;
