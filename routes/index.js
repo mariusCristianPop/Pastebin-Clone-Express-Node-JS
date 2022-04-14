@@ -2,11 +2,17 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var dbOperation = require(path.resolve('services/database/db_operations'));
+var db = require(path.resolve('services/database/db_connect'));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'Express'
+  var sql = 'SELECT * FROM binContent';
+  db.connection.query(sql, function (err, data, fields) {
+    if (err) throw err;
+    res.render('index', {
+      title: 'Pastebin Clone',
+      userData: data
+    });
   });
 });
 
@@ -14,14 +20,18 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   console.log(`User has inserted: ${req.body.userInput}`)
   dbOperation.dbInsert(req.body.userInput);
-  dbOperation.showContents();
-  res.render("index", {
-      title: 'ExpressA'
+  var sql = 'SELECT * FROM binContent';
+  db.connection.query(sql, function (err, data, fields) {
+    if (err) throw err;
+    res.render('index', {
+      title: 'Pastebin Clone',
+      userData: data
+    });
   });
 });
 
 /* Startup operations */
-dbOperation.dropTable();
-dbOperation.createTable();
+// dbOperation.dropTable();
+// dbOperation.createTable();
 
 module.exports = router;
