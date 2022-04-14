@@ -18,14 +18,14 @@
       </table>
     </form>
     <div class="table-data">
-      <h2>Recently submited bins</h2>
+      <h2>Recent submissions:</h2>
         <table border="1">
           <tr>
             <th>ID</th>
               <th>Content</th>
-              <th>Inserted At</th>
+              <th>Inserted at</th>
           </tr> 
-          <% if(userData){
+          <% if(userData.length > 0){
             var i=1;
             userData.forEach(function(data){
           %>
@@ -38,7 +38,7 @@
           <% } 
           else { %>
           <tr>
-            <td colspan="7">The inserted bins will be available here</td>
+            <td colspan="7">Your submissions will be visible here</td>
           </tr>
           <% } %>
         </table>
