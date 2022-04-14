@@ -16,6 +16,32 @@
           <td colspan="2"><input type="submit" value="Save" ></td>
           </tr>
       </table>
-      </form>   
+    </form>
+    <div class="table-data">
+      <h2>Recently submited bins</h2>
+        <table border="1">
+          <tr>
+            <th>ID</th>
+              <th>Content</th>
+              <th>Inserted At</th>
+          </tr> 
+          <% if(userData){
+            var i=1;
+            userData.forEach(function(data){
+          %>
+          <tr>
+            <td><%=data.id %></td>
+            <td><%=data.content %></td>
+            <td><%=data.insertedAt %></td>
+          </tr>
+          <%  i++; }) %>
+          <% } 
+          else { %>
+          <tr>
+            <td colspan="7">The inserted bins will be available here</td>
+          </tr>
+          <% } %>
+        </table>
+    </div>   
   </body>
 </html>
